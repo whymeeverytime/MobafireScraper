@@ -19,9 +19,10 @@ async def on_ready():
 
 @client.event
 async def on_message(msg):
+
     if msg.author == client.user:
         return
-    if msg.channel.id != channelId1 and msg.channel.id != channelId2:
+    if msg.channel.id != channelId1 and msg.channel.id != channelId2 and not isinstance(msg.channel, discord.channel.DMChannel):
         return
 
     if msg.content.split(' ')[0] == '!mobafire':
@@ -54,7 +55,10 @@ async def on_message(msg):
                 name="Thumbs Down",
                 value=str(voteContent[1])
             )
-            await msg.channel.send(embed=embed)
+            if isinstance(msg.channel, discord.channel.DMChannel):
+                await msg.author.send(embed=embed)
+            else:
+                await msg.channel.send(embed=embed)
 
 
 client.run(token)
