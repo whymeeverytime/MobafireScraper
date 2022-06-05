@@ -7,8 +7,7 @@ token = file.read()
 
 client = discord.Client()
 
-channelId1 = 790988424814919720
-channelId2 = 833986892844105761
+channelIds = [790988424814919720, 472863919246016533, 833986892844105761, 835624329164357724]
 
 
 @client.event
@@ -19,10 +18,9 @@ async def on_ready():
 
 @client.event
 async def on_message(msg):
-
     if msg.author == client.user:
         return
-    if msg.channel.id != channelId1 and msg.channel.id != channelId2 and not isinstance(msg.channel, discord.channel.DMChannel):
+    if msg.channel.id not in channelIds and not isinstance(msg.channel, discord.channel.DMChannel):
         return
 
     if msg.content.split(' ')[0] == '!mobafire':
