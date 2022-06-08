@@ -1,5 +1,6 @@
 token.txt
 .idea
+Pipfile.lock
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
